@@ -1,0 +1,12 @@
+streamlit
+beautifulsoup4
+requests
+langchain
+langchain-community
+chromadb
+sentence-transformers
+unstructured
+python-docx
+pdfminer.six
+tqdm
+ollama
