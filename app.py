@@ -96,21 +96,25 @@ if query and st.session_state.rag_chain:
 # Display chat
 if st.session_state.chat_history:
     st.subheader("📜 Chat History")
-    for q, a, docs in reversed(st.session_state.chat_history):
-        st.markdown(f"**🧚‍♀️You:** {q}")
-        st.markdown(f"**🤖 Gemma:** {a}")
-
-        # 🔍 Show retrieved context
-        #if docs:
-        #    with st.expander("📄 Retrieved Context", expanded=False):
-        #       for i, doc in enumerate(docs):
-        #           content = doc.page_content[:500]
-        #           st.markdown(f"**Doc {i+1}:**\n```{content}```")
+    for item in reversed(st.session_state.chat_history):
+        if isinstance(item, (tuple, list)) and len(item) >= 2:
+            q, a = item[:2]
+            st.markdown(f"**🧑 You:** {q}")
+            st.markdown(f"**🤖 Gemma:** {a}")
 
     # Save chat button
     if st.button("💾 Save Chat to File"):
         filename = save_chat_to_file()
         with open(filename, "rb") as f:
             b64 = base64.b64encode(f.read()).decode()
-            href = f'<a href="data:file/txt;base64,{b64}" download="{filename}">Click to download</a>'
+            href = f'<a href="data:file/txt;base64,{b64}" download="{filename}">📥 Click to download</a>'
             st.markdown(href, unsafe_allow_html=True)
+
+# Always show clear chat option in sidebar
+with st.sidebar:
+    st.subheader("⚙️ Chat Controls")
+    if st.button("🧹 Clear Chat History"):
+        st.session_state.chat_history = []
+        st.success("Chat history cleared.")
+
+
