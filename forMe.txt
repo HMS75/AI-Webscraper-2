@@ -1,0 +1,81 @@
+Step by step process of how this task was done - 
+
+1. To create a virtual environment 
+
+python -m venv task5
+
+Created a folder in my project directory, which will contain the virtual environment.
+
+2. Activate the virtual environment
+
+.\task5\Scripts\Activate
+
+3. Create requirements.txt which contains a list of all the requirements needed to be downloaded 
+
+4. To install dependencies in the requirements.txt
+
+pip install -r requirements.txt
+
+Package	                               Purpose
+streamlit	                           UI framework
+beautifulsoup4	                       Parsing website HTML
+requests	                           Fetching website HTML
+langchain	                           RAG chains and document processing
+langchain-community	                   Integration with Ollama, file loaders, etc.
+chromadb	                           Vector database for embeddings
+sentence-transformers	               Embedding model (all-MiniLM-L6-v2)
+unstructured	                       Document parsing (PDFs, DOCX, etc.)
+python-docx	                           .docx file support
+pdfminer.six	                       .pdf file support
+tqdm	                               Progress bars (optional, helpful for loops)
+ollama	                               To interact with your local LLM (Gemma3:1b)
+
+5. Since I've already installed Ollama - Gemma3b, I'll run this line in case I haven't installed 
+
+pip install langchain langchain-community
+
+6. TASK 5/
+│
+├── app.py                # Main app and Gradio UI
+├── web_scrapper.py        # Crawl4AI logic
+├── document_handler.py   # Upload and parse documents
+├── embed_store.py        # Create and store embeddings in Chroma
+├── rag_chain.py          # LLM + Retriever logic
+├── requirements.txt
+├── forMe.txt
+└── task5/ 
+
+7. Write the codes for app.py, document_handler.py, embed_store.py, rag_chain.py, and web_scrapper.py
+
+8. Now, check for Ollama's version for safe side
+
+ollama --version
+
+9. Now pull and run the LLM model
+
+ollama pull gemma3:1b
+
+ollama run gemma3:1b
+
+10. Test the LLM model
+
+Example question used - What is Retrieval-Augmented Generation (RAG)?
+
+11. Tools I'll be using 
+
+Part	                               Tool / Library
+LLM	                                   Ollama (gemma3:1b)
+Vector DB	                           ChromaDB
+Embeddings	                           InstructorEmbedding (or any from langchain)
+UI	                                   Gradio
+Website Scraper	                       crawl4ai (custom fallback if needed)
+Document parsing	                   LangChain loaders (PDF, TXT, DOCX)
+
+12. Open API Key 
+
+
+Dropped the usage of Open API key because
+
+❌ Error generating answer: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, 
+read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
